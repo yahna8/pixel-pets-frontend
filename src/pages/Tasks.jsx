@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import useTasks from '../hooks/useTasks';
 
 const Tasks = () => {
-  const {
-    tasks,
-    completedTasks,
-    addTask,
-    markTaskAsCompleted,
-    loading,
-    error,
-  } = useTasks();
+  const { tasks, addTask, markTaskAsCompleted } = useTasks();
 
+  // State for form visibility and task input
+  const [isAdding, setIsAdding] = useState(false);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -18,77 +13,80 @@ const Tasks = () => {
     deadline: '',
   });
 
+  // Handle input changes in the form
   const handleInputChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
-  const handleAddTask = (e) => {
+  // Submit the form and send task data to the API
+  const handleSubmit = (e) => {
     e.preventDefault();
-    addTask(newTask);
-    setNewTask({ title: '', description: '', priority: 1, deadline: '' });
+    if (!newTask.title.trim()) return; // Ensure title is not empty
+
+    addTask(newTask); // Send request to API
+    setNewTask({ title: '', description: '', priority: 1, deadline: '' }); // Reset form
+    setIsAdding(false); // Close form after submission
   };
 
   return (
-    <div>
-      <h1>Tasks</h1>
-      {loading && <p>Loading tasks...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="tasks-page">
+      <div className="tasks-card">
+        <h2>Tasks</h2>
+        <ul>
+          {tasks.map((task) => (
+            <li key={task.id} className="task-item">
+              {task.title}
+              <button onClick={() => markTaskAsCompleted(task.id)}>✔</button>
+            </li>
+          ))}
+        </ul>
 
-      <form onSubmit={handleAddTask}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Task Title"
-          value={newTask.title}
-          onChange={handleInputChange}
-          required
-        />
-        <textarea
-          name="description"
-          placeholder="Task Description"
-          value={newTask.description}
-          onChange={handleInputChange}
-        ></textarea>
-        <input
-          type="number"
-          name="priority"
-          placeholder="Priority"
-          value={newTask.priority}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="date"
-          name="deadline"
-          value={newTask.deadline}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">Add Task</button>
-      </form>
+        {/* Add Task Button */}
+        {!isAdding && (
+          <button className="add-task" onClick={() => setIsAdding(true)}>
+            + Add Task
+          </button>
+        )}
 
-      <h2>Active Tasks</h2>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-            <p>Priority: {task.priority}</p>
-            <p>Deadline: {task.deadline}</p>
-            <button onClick={() => markTaskAsCompleted(task.id)}>Mark as Completed</button>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Completed Tasks</h2>
-      <ul>
-        {completedTasks.map((task) => (
-          <li key={task.id}>
-            <h3>{task.title}</h3>
-            <p>Completed On: {task.completion_date}</p>
-          </li>
-        ))}
-      </ul>
+        {/* Task Creation Form */}
+        {isAdding && (
+          <form className="task-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="title"
+              placeholder="Task Title"
+              value={newTask.title}
+              onChange={handleInputChange}
+              required
+            />
+            <textarea
+              name="description"
+              placeholder="Task Description"
+              value={newTask.description}
+              onChange={handleInputChange}
+            />
+            <input
+              type="number"
+              name="priority"
+              placeholder="Priority (1-5)"
+              value={newTask.priority}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="date"
+              name="deadline"
+              value={newTask.deadline}
+              onChange={handleInputChange}
+              required
+            />
+            <button type="submit">Create Task</button>
+            <button type="button" onClick={() => setIsAdding(false)}>
+              Cancel
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

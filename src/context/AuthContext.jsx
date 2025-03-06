@@ -1,51 +1,34 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  // Restore user state from localStorage on app load
+  // On mount, check for a token in localStorage
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
-      const decodedUser = parseJwt(token);
-      setUser(decodedUser);
+      // Optionally, validate the token or fetch user info
+      setUser({ token }); // or set a more descriptive user object
     }
+    setAuthLoading(false);
   }, []);
 
-  const login = (token) => {
-    const decodedUser = parseJwt(token);
-    setUser(decodedUser);
-    localStorage.setItem('access_token', token);
+  const login = (access_token) => {
+    localStorage.setItem('access_token', access_token);
+    setUser({ token: access_token });
   };
 
   const logout = () => {
-    setUser(null);
     localStorage.removeItem('access_token');
-  };
-
-  const parseJwt = (token) => {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(atob(base64));
-    } catch (err) {
-      return null;
-    }
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, authLoading }}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 };
