@@ -42,6 +42,7 @@ const Navbar = () => {
 
       {user && (
         <div className="user-info">
+          <span className="points">Points: </span>
           <span className="streak">{streak}</span>
           <button onClick={logout} className="logout-button">
             Logout

@@ -91,6 +91,10 @@ button {
     transform: scale(1.1); /* Slight zoom effect */
 }
 
+.user-info {
+    font-family: 'Nunito', sans-serif; /* Soft, rounded font */
+}
+
 .logout-button {
     background: none;
     border: none;
