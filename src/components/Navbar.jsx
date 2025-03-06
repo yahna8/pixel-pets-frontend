@@ -2,29 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { sendUserEmail, getDailyStreak } from '../api/dailystreak';
+import { getUserPoints } from '../api/points';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [streak, setStreak] = useState('');
+  const [points, setPoints] = useState(0);
 
   useEffect(() => {
     if (user) {
-      const updateStreak = async () => {
+      const updateStreakAndPoints = async () => {
         try {
           // Send user email to backend
           await sendUserEmail(user.email);
-          // Wait for backend to process the streak
+
+          // Fetch updated streak with a delay
           setTimeout(async () => {
-            const streakMessage = await getDailyStreak(); // Fetch updated streak
+            const streakMessage = await getDailyStreak();
             setStreak(streakMessage);
-          }, 2000); // 2-second delay to allow backend to update streak
+          }, 2000);
+
+          // Fetch user points
+          const userPoints = await getUserPoints();
+          setPoints(userPoints);
         } catch (error) {
-          console.error("Error updating streak:", error);
+          console.error("Error updating streak or points:", error);
         }
       };
 
-      updateStreak();
-      const interval = setInterval(updateStreak, 10000); // Update every 10s
+      updateStreakAndPoints();
+      const interval = setInterval(updateStreakAndPoints, 10000); // Update every 10s
       return () => clearInterval(interval);
     }
   }, [user]);
@@ -42,8 +49,8 @@ const Navbar = () => {
 
       {user && (
         <div className="user-info">
-          <span className="points">Points: </span>
-          <span className="streak">{streak}</span>
+          <span className="points">Points: {points}</span>
+          <span className="streak">    {streak}</span>
           <button onClick={logout} className="logout-button">
             Logout
           </button>

@@ -1,52 +1,76 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.TASKS_API_URL || 'http://localhost:8003'; 
+const BASE_URL = process.env.POINTS_API_URL || 'http://localhost:8003';
 
 /**
- * Fetch amount of points.
- * @returns {Promise} - Amount of points.
+ * Fetch the user's current points balance.
+ * @returns {Promise} - User's point balance.
  */
-export const getTasks = async () => {
-  const response = await axios.get(`${BASE_URL}/tasks`);
-  return response.data;
-};
+export const getUserPoints = async () => {
+  const token = localStorage.getItem('access_token'); // Retrieve the token from localStorage
+  if (!token) {
+    throw new Error('No access token found');
+  }
 
-/**
- * Fetch completed tasks (task history).
- * @returns {Promise} - List of completed tasks.
- */
-export const getTaskHistory = async () => {
-  const response = await axios.get(`${BASE_URL}/tasks/history`);
-  return response.data;
-};
-
-/**
- * Create a new task.
- * @param {Object} task - Task details (title, description, priority, deadline).
- * @returns {Promise} - Created task.
- */
-export const createTask = async (task) => {
-    const token = localStorage.getItem('access_token'); // Retrieve the token from localStorage
-    if (!token) {
-      throw new Error('No access token found');
-    }
-  
-    const response = await axios.post(`${BASE_URL}/tasks`, task, {
+  try {
+    const response = await axios.get(`${BASE_URL}/points`, {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+        'Authorization': `Bearer ${token}`
+      }
     });
-  
-    return response.data;
-  };
+    return response.data.balance;
+  } catch (error) {
+    console.error('Error fetching user points:', error);
+    return 0; // Default balance if error occurs
+  }
+};
 
 /**
- * Mark a task as completed.
- * @param {number} taskId - ID of the task to mark as completed.
- * @returns {Promise} - Updated task.
+ * Add points to the user's balance.
+ * @param {number} amount - The amount of points to add.
+ * @returns {Promise} - Updated point balance.
  */
-export const completeTask = async (taskId) => {
-  const response = await axios.put(`${BASE_URL}/tasks/${taskId}/complete`);
-  return response.data;
+export const addPoints = async (amount) => {
+  const token = localStorage.getItem('access_token');
+  if (!token) {
+    throw new Error('No access token found');
+  }
+
+  try {
+    const response = await axios.post(`${BASE_URL}/points/add`, null, {
+      params: { amount },
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data.balance;
+  } catch (error) {
+    console.error('Error adding points:', error);
+    throw new Error(error.response?.data?.detail || 'Failed to add points');
+  }
+};
+
+/**
+ * Deduct points from the user's balance.
+ * @param {number} amount - The amount of points to deduct.
+ * @returns {Promise} - Updated point balance.
+ */
+export const deductPoints = async (amount) => {
+  const token = localStorage.getItem('access_token');
+  if (!token) {
+    throw new Error('No access token found');
+  }
+
+  try {
+    const response = await axios.post(`${BASE_URL}/points/deduct`, null, {
+      params: { amount },
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data.balance;
+  } catch (error) {
+    console.error('Error deducting points:', error);
+    throw new Error(error.response?.data?.detail || 'Failed to deduct points');
+  }
 };
