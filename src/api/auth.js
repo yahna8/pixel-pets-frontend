@@ -24,6 +24,7 @@ export const registerUser = async (userData) => {
  */
 export const loginUser = async (credentials) => {
   try {
+    console.log("Credentials: ", credentials);
     const response = await axios.post(`${BASE_URL}/login`, credentials);
     return response.data;
   } catch (error) {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTasks, getTaskHistory, createTask, completeTask } from '../api/tasks';
+import { addPoints } from '../api/points';
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -40,6 +41,9 @@ const useTasks = () => {
       const updatedTask = await completeTask(taskId);
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
       setCompletedTasks((prevCompleted) => [...prevCompleted, updatedTask]);
+
+      // Award 10 points for completing a task
+      await addPoints(10);
     } catch (err) {
       setError(err.message || 'Failed to complete task');
     }
