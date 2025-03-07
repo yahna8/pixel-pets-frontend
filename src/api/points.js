@@ -9,11 +9,8 @@ const BASE_URL = process.env.POINTS_API_URL || 'http://localhost:8003';
 export const getUserPoints = async () => {
   const token = localStorage.getItem('access_token'); // Retrieve the token from localStorage
   if (!token) {
-    console.error("No access token found.");
     throw new Error('No access token found');
   }
-
-  console.log("Using token:", token); // Debugging
 
   try {
     const response = await axios.get(`${BASE_URL}/points`, {
@@ -23,8 +20,8 @@ export const getUserPoints = async () => {
     });
     return response.data.balance;
   } catch (error) {
-    console.error('Error fetching user points:', error.response?.data || error);
-    throw new Error(error.response?.data?.detail || 'Failed to fetch points');
+    console.error('Error fetching user points:', error);
+    return 0; // Default balance if error occurs
   }
 };
 

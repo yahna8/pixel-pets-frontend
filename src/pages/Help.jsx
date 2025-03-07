@@ -10,7 +10,7 @@ const HelpPage = () => {
 
   return (
     <div className="help-container">
-      <h1 className="help-title">Help - Pet Study Tracker</h1>
+      <h1 className="help-title">Help - Pixel Pets</h1>
       <p className="help-intro">
         Complete tasks, earn points, and customize your virtual pet with rewards!
         Click on a section below to learn more.

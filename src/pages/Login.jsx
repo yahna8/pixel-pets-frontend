@@ -58,7 +58,7 @@ const Login = () => {
             <p className="tagline">Gamify your goals with data-driven rewards and adorable pixel companions</p>
         </div>
 
-        <img src="/assets/happy_dog.png" alt="Happy Dog" className="side-image right-image"/>
+        <img src="/assets/standing_dog.png" alt="Standing Dog" className="side-image right-image"/>
     </div>
   );
 };

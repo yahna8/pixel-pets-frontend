@@ -3,7 +3,6 @@ import useTasks from '../hooks/useTasks';
 
 const Tasks = () => {
   const { tasks, addTask, markTaskAsCompleted } = useTasks();
-  const [message, setMessage] = useState('');
 
   // State for form visibility and task input
   const [isAdding, setIsAdding] = useState(false);
@@ -29,33 +28,27 @@ const Tasks = () => {
     setIsAdding(false); // Close form after submission
   };
 
-  // Handle task completion and show points earned
-  const handleTaskCompletion = async (taskId) => {
-    await markTaskAsCompleted(taskId);
-    setMessage("✅ You earned 10 points!");
-    setTimeout(() => setMessage(''), 3000);
-  };
-
   return (
     <div className="tasks-page">
       <div className="tasks-card">
         <h2>Tasks</h2>
-        {message && <p className="success-message">{message}</p>}
         <ul>
           {tasks.map((task) => (
             <li key={task.id} className="task-item">
               {task.title}
-              <button onClick={() => handleTaskCompletion(task.id)}>✔</button>
+              <button onClick={() => markTaskAsCompleted(task.id)}>✔</button>
             </li>
           ))}
         </ul>
 
+        {/* Add Task Button */}
         {!isAdding && (
           <button className="add-task" onClick={() => setIsAdding(true)}>
             + Add Task
           </button>
         )}
 
+        {/* Task Creation Form */}
         {isAdding && (
           <form className="task-form" onSubmit={handleSubmit}>
             <input
