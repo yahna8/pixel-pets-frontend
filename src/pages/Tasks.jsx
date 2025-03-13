@@ -6,6 +6,7 @@ const Tasks = () => {
 
   // State for form visibility and task input
   const [isAdding, setIsAdding] = useState(false);
+  const [expandedTask, setExpandedTask] = useState(null); 
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -16,6 +17,10 @@ const Tasks = () => {
   // Handle input changes in the form
   const handleInputChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
+  };
+
+  const toggleTaskDetails = (taskId) => {
+    setExpandedTask(expandedTask === taskId ? null : taskId);
   };
 
   // Submit the form and send task data to the API
@@ -32,11 +37,20 @@ const Tasks = () => {
     <div className="tasks-page">
       <div className="tasks-card">
         <h2>Tasks</h2>
+        {/* Active Task List */}
         <ul>
           {tasks.map((task) => (
-            <li key={task.id} className="task-item">
-              {task.title}
-              <button onClick={() => markTaskAsCompleted(task.id)}>✔</button>
+            <li key={task.id} className="task-item" onClick={() => toggleTaskDetails(task.id)}>
+              {task.title} {expandedTask === task.id ? "▲" : "▼"}
+
+              {expandedTask === task.id && (
+                <div className="task-details">
+                  <p><strong>Description:</strong> {task.description || "No description"}</p>
+                  <p><strong>Due Date:</strong> {task.deadline || "No deadline"}</p>
+                  <p><strong>Difficulty:</strong> {task.priority}/5</p>
+                  <button className="complete-task-button" onClick={() => markTaskAsCompleted(task.id)}>✔ Complete Task</button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -65,14 +79,23 @@ const Tasks = () => {
               value={newTask.description}
               onChange={handleInputChange}
             />
-            <input
-              type="number"
+            
+            {/* ✅ Change "Priority" to "Difficulty" */}
+            <label htmlFor="difficulty">Difficulty:</label>
+            <select
+              id="difficulty"
               name="priority"
-              placeholder="Priority (1-5)"
               value={newTask.priority}
               onChange={handleInputChange}
               required
-            />
+            >
+              <option value="1">Easy (1 point)</option>
+              <option value="2">Medium (2 points)</option>
+              <option value="3">Hard (3 points)</option>
+              <option value="4">Very Hard (4 points)</option>
+              <option value="5">Extreme (5 points)</option>
+            </select>
+
             <input
               type="date"
               name="deadline"
@@ -86,6 +109,9 @@ const Tasks = () => {
             </button>
           </form>
         )}
+
+        
+
       </div>
     </div>
   );

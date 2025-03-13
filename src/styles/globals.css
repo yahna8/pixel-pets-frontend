@@ -241,12 +241,13 @@ body {
 
 .tasks-card {
     width: 100%;
-    max-width: 400px;
-    background-color: #A67C52; /* Golden Brown */
+    max-width: 800px;
+    background-color: #A67C52; /* Warm Brown */
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     color: #F8EDE3; /* Soft Cream */
+    text-align: center;
 }
 
 .tasks-card h2 {
@@ -257,14 +258,21 @@ body {
 }
 
 .task-item {
-    padding: 0.5rem;
-    background-color: #E76F51; /* Burnt Orange */
-    border-radius: 4px;
-    margin: 0.25rem 0;
+    background: #E76F51; /* Burnt Orange */
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #F8EDE3; /* Soft Cream */
+}
+
+.task-item:hover {
+    background: #F4A261; /* Peach Glow */
+    transform: scale(1.02);
 }
 
 .task-item button {
@@ -276,6 +284,39 @@ body {
 
 .task-item button:hover {
     color: #E76F51; /* Burnt Orange */
+}
+
+.complete-task-button {
+    background-color: #E76F51; /* Burnt Orange */
+    color: #F8EDE3; /* Soft Cream */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.complete-task-button:hover {
+    background-color: #D65A31; /* Darker orange */
+    color: #F8EDE3; /* Ensure text stays readable */
+}
+
+
+/* --- Expanded Task Details (Dropdown) --- */
+.task-details {
+    background: #F8EDE3; /* Soft Cream */
+    color: #1B1A17; /* Dark Charcoal */
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.task-details p {
+    margin: 5px 0;
 }
 
 /* Add Task Button */

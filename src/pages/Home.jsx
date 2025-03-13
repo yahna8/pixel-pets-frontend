@@ -6,7 +6,7 @@ import "../styles/globals.css"; // Import styles
 const BASE_URL = process.env.STORE_API_URL || "http://localhost:8004";
 
 export default function Home() {
-  const { tasks, addTask, markTaskAsCompleted } = useTasks();
+  const { tasks, markTaskAsCompleted } = useTasks();
   const [equippedItem, setEquippedItem] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Home() {
     const fetchEquippedItem = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/inventory/equipped`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("access_token")}` }
+          headers: { Authorization: `Bearer ${localStorage.getItem("access_token")}` },
         });
 
         setEquippedItem(response.data);
@@ -57,15 +57,18 @@ export default function Home() {
         {/* To-Do List (Right Side Panel) */}
         <div className="todo-panel-home">
           <h2>To-Do List</h2>
-          <ul>
-            {tasks.map((task) => (
-              <li key={task.id}>
-                {task.title}
-                <button onClick={() => markTaskAsCompleted(task.id)}>✔</button>
-              </li>
-            ))}
-          </ul>
-          <button onClick={() => addTask({ title: "New Task" })}>+ Add Task</button>
+          {tasks.length > 0 ? (
+            <ul>
+              {tasks.map((task) => (
+                <li key={task.id} className="task-item-mini">
+                  {task.title}
+                  <button className="task-complete-btn" onClick={() => markTaskAsCompleted(task)}>✔</button>
+                  </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No tasks available.</p>
+          )}
         </div>
       </div>
     </div>

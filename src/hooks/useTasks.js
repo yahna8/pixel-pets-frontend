@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTasks, getTaskHistory, createTask, completeTask } from '../api/tasks';
+import { addPoints } from "../api/points"; 
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -35,13 +36,21 @@ const useTasks = () => {
     }
   };
 
-  const markTaskAsCompleted = async (taskId) => {
+  const markTaskAsCompleted = async (task) => {
     try {
-      const updatedTask = await completeTask(taskId);
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-      setCompletedTasks((prevCompleted) => [...prevCompleted, updatedTask]);
+      await completeTask(task.id); // Mark task as completed
+  
+      const pointsAwarded = task.priority * 5; // Calculate points based on priority
+  
+      await addPoints(pointsAwarded); // Add points using the Points API
+  
+      alert(`Task completed! You earned ${pointsAwarded} points!`);
+  
+      // ✅ Remove task from active list and update completed tasks
+      setTasks((prevTasks) => prevTasks.filter((t) => t.id !== task.id));
+      setCompletedTasks((prevCompleted) => [...prevCompleted, task]);
     } catch (err) {
-      setError(err.message || 'Failed to complete task');
+      setError(err.message || "Failed to complete task");
     }
   };
 
