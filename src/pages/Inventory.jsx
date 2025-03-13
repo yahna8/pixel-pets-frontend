@@ -67,12 +67,12 @@ const Inventory = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="store-and-inventory">
       <h2>Your Inventory</h2>
 
       {equippedItem && (
         <div className="equipped-item">
-          <h3>Equipped:</h3>
+          <h3>Current pet:</h3>
           <img src={`http://localhost:8004${equippedItem.image}`} alt={equippedItem.name} className="equipped-image" />
           <p><strong>{equippedItem.name}</strong></p>
         </div>
@@ -89,7 +89,7 @@ const Inventory = () => {
             <div className="item-details">
               <h3>{item.name}</h3>
               <p>{item.description}</p>
-              <button className="equip-button" onClick={() => handleEquip(item)}>Equip</button>
+              <button className="equip-button" onClick={() => handleEquip(item)}>Choose pet</button>
             </div>
           </div>
         ))}

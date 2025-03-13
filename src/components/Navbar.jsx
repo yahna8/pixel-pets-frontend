@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { sendUserEmail, getDailyStreak } from '../api/dailystreak';
 import { getUserPoints } from '../api/points';
+import BackgroundMusic from "./BackgroundMusic";
+import musicFile from "../assets/background-music.mp3";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -56,6 +58,7 @@ const Navbar = () => {
           </button>
         </div>
       )}
+      <BackgroundMusic src={musicFile} />
     </nav>
   );
 };

@@ -10,6 +10,16 @@ export default function Home() {
   const [equippedItem, setEquippedItem] = useState(null);
 
   useEffect(() => {
+    // Disable scrolling when the component mounts
+    document.body.classList.add("no-scroll");
+
+    return () => {
+      // Re-enable scrolling when leaving the Home page
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
+
+  useEffect(() => {
     // Fetch the equipped asset
     const fetchEquippedItem = async () => {
       try {
@@ -61,4 +71,3 @@ export default function Home() {
     </div>
   );
 }
-

@@ -31,6 +31,20 @@ button {
     font-weight: 600;
 }
 
+/* Default: Allow scrolling */
+body {
+    overflow: auto;
+  }
+  
+  /* Disable scrolling only when this class is applied */
+  .no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: fixed; /* Prevents movement */
+  }  
+  
+
 /* Style for links */
 .btn-register {
     color: #F4A261; /* Soft orange to match the login button */
@@ -141,6 +155,19 @@ button {
     padding: 5rem 2rem 0 2rem; /* top padding: 5rem; horizontal: 2rem */
     position: relative;
 }
+
+/* Store/Inventory Section */
+.store-and-inventory h2 {
+    font-family: "Press Start 2P", cursive; /* Example: Retro pixel font */
+    font-size: 24px; /* Adjust size */
+    font-weight: bold;
+    color: #ffcc80; /* Light orange color to match the UI */
+    text-align: center;
+    margin-top: 30px; /* Adds more top padding */
+    padding-top: 20px; /* Fine-tunes spacing */
+    padding-bottom: 20px;
+}
+
 
 /* Middle Store/Inventory Section */
 .middle-container {
@@ -540,7 +567,7 @@ button {
   
   .buy-button {
     background-color: #8B3A2F;
-    color: #A67C52;
+    color: #a78b6f;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
@@ -568,7 +595,7 @@ button {
   
   /* Modal content */
   .modal-content {
-    background: white;
+    background: rgb(65, 48, 37);
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -584,8 +611,8 @@ button {
   }
   
   .confirm-button {
-    background-color: #007bff;
-    color: white;
+    background-color: #8B3A2F;
+    color: #a78b6f;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
@@ -593,7 +620,7 @@ button {
   }
   
   .confirm-button:hover {
-    background-color: #0056b3;
+    background-color: #6b2820;
   }
   
   .cancel-button {
@@ -627,14 +654,14 @@ button {
   .equipped-image {
     width: 150px;
     height: auto;
-    border: 3px solid #007bff;
+    border: 3px solid #F4A261;
     border-radius: 8px;
     margin-top: 10px;
   }
   
   .equip-button {
-    background-color: #28a745;
-    color: white;
+    background-color: #8B3A2F;
+    color: #a78b6f;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
@@ -643,7 +670,7 @@ button {
   }
   
   .equip-button:hover {
-    background-color: #218838;
+    background-color: #6b2820;
   }
 
   /* Homepage equipped pet */
@@ -651,14 +678,57 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-left: 420px;
+    margin-top: 150px;
   }
   
   .equipped-asset {
     width: 150px; /* Adjust size as needed */
     height: auto;
-    border-radius: 10px;
-    border: 2px solid #007bff;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Profile styling */
+  .profile-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: white;
+  }
+  
+  .profile-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .profile-info p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Mute Button (Navbar) */
+.music-button-container {
+    top: 10px;
+    left: 20px;
+  }
+  
+  .mute-button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .mute-button:hover {
+    transform: scale(1.1);
   }
   

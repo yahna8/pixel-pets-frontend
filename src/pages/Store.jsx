@@ -53,9 +53,8 @@ const Store = () => {
   };
 
   return (
-    <div>
+    <div className="store-and-inventory">
       <h2>Store</h2>
-      <p><strong>Your Points:</strong> {userPoints}</p>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 

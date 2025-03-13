@@ -12,61 +12,83 @@ const HelpPage = () => {
     <div className="help-container">
       <h1 className="help-title">Help - Pixel Pets</h1>
       <p className="help-intro">
-        Complete tasks, earn points, and customize your virtual pet with rewards!
-        Click on a section below to learn more.
+        Welcome to Pixel Pets! This virtual pet productivity tracker helps you stay on top of tasks while rewarding you with cool pets and items. Click on a section below to learn more.
       </p>
 
       {/* Accordion Sections */}
       {[
+    {
+        title: "Costs & Pricing",
+        content: (
+            <ul>
+            <li><strong>Is Pixel Pets Free?</strong> Yes! Pixel Pets is completely free to use.</li>
+            <li><strong>Are There Any Paid Features?</strong> No, everything including task tracking, points, store purchases, and inventory management is included at no cost.</li>
+            <li><strong>Do I Need to Make Any Purchases?</strong> No real-money purchases are required. All in-game items are bought using points earned from completing tasks.</li>
+            </ul>
+        ),
+        },
         {
-            title: "Cost & Fees",
-            content: (
-                <ul>
-                <li><strong>Cost:</strong> Pixel Pets is a free-to-use service. Don't worry about hidden fees or anything like that - we are dedicated to providing productivity support at no cost to you!</li>
-                </ul>
-            ),
-            },
+          title: "How to Use Pixel Pets",
+          content: (
+            <ul>
+              <li><strong>Add Tasks:</strong> Use the "Tasks" page to create new tasks.</li>
+              <li><strong>Mark Tasks as Complete:</strong> Click the ✔ button next to a task to complete it and earn points.</li>
+              <li><strong>Daily Streaks:</strong> Completing tasks consistently increases your streak and gives bonus points!</li>
+              <li><strong>Track Progress:</strong> View task history and check your profile for streak details.</li>
+            </ul>
+          ),
+        },
         {
           title: "Earning & Using Points",
           content: (
             <ul>
-              <li><strong>How to Earn Points:</strong> Complete tasks to earn points. Bigger tasks may grant more points.</li>
-              <li><strong>Spending Points:</strong> Use points in the shop to buy new pets, decorations, and accessories.</li>
-              <li><strong>Bonus Rewards:</strong> Keep a daily streak to earn bonus points!</li>
+              <li><strong>How to Earn Points:</strong> Completing tasks grants you points. The harder the task, the more points you earn.</li>
+              <li><strong>Spending Points:</strong> Use your points in the <strong>Store</strong> to purchase new pets.</li>
+              <li><strong>Not Enough Points?</strong> Keep completing tasks to save up!</li>
             </ul>
           ),
         },
         {
-          title: "Customizing Your Pet",
+          title: "Store & Inventory",
           content: (
             <ul>
-              <li><strong>Changing Pets:</strong> Unlock and switch between different pets.</li>
-              <li><strong>Decorations & Accessories:</strong> Use points to purchase items for your pet’s environment.</li>
-              <li><strong>Pet Mood & Reactions:</strong> Your pet reacts based on your productivity—keep completing tasks to keep it happy!</li>
+              <li><strong>Store:</strong> The store lets you buy new pets using points.</li>
+              <li><strong>Purchasing Items:</strong> Click the "Buy" button and confirm your purchase.</li>
+              <li><strong>Inventory:</strong> Items you buy appear in your inventory, where you can equip them.</li>
             </ul>
           ),
         },
         {
-          title: "Settings & Account Management",
+          title: "Choosing Pets",
           content: (
             <ul>
-              <li><strong>Profile Settings:</strong> Change your username, pet preferences, and theme.</li>
-              <li><strong>Notification Preferences:</strong> Enable or disable reminders for upcoming tasks.</li>
-              <li><strong>Reset Progress:</strong> Start fresh by resetting your tasks and points (this cannot be undone).</li>
+              <li><strong>How to Equip a Pet:</strong> Visit your <strong>Inventory</strong>, select a pet, and click "Equip."</li>
+              <li><strong>Viewing Your Pet:</strong> Your equipped pet appears on the homepage.</li>
+              <li><strong>Switching Pets:</strong> You can swap between pets anytime in your inventory.</li>
             </ul>
           ),
         },
         {
-            title: "Frequently Asked Questions",
-            content: (
-              <ul>
-                <li><strong>Q: What happens if I forget to complete tasks?</strong> A: Incomplete tasks will remain in your list, but missing deadlines may affect streaks.</li>
-                <li><strong>Q: Can I switch my pet later?</strong> A: Yes! You can unlock new pets and change them at any time.</li>
-                <li><strong>Q: Are there different difficulty levels for tasks?</strong> A: Yes! You can assign difficulty levels, and harder tasks grant more points.</li>
-                <li><strong>Q: How do I report a bug or suggest a feature?</strong> A: Contact us through the support section in the app.</li>
-              </ul>
-            ),
-          },
+          title: "Profile & Account Settings",
+          content: (
+            <ul>
+              <li><strong>View Profile:</strong> Your profile displays your username and email.</li>
+              <li><strong>Track Streaks:</strong> Check your profile to see how long your task streak is.</li>
+              <li><strong>Logout:</strong> Click "Logout" in the navigation bar to log out securely.</li>
+            </ul>
+          ),
+        },
+        {
+          title: "Frequently Asked Questions",
+          content: (
+            <ul>
+              <li><strong>Q: What happens if I forget to complete tasks?</strong><br/>A: Incomplete tasks remain in your list.</li>
+              <li><strong>Q: Can I switch my pet later?</strong><br/>A: Yes! You can equip any pet you’ve purchased from the inventory.</li>
+              <li><strong>Q: Can I buy multiple pets?</strong><br/>A: Absolutely! Pets you purchase are stored in your inventory, and you can equip them anytime.</li>
+              <li><strong>Q: How do I report a bug or suggest a feature?</strong><br/>A: You can reach out via the support section in the app.</li>
+            </ul>
+          ),
+        },
       ].map((section, index) => (
         <div key={index} className="help-section">
           <button className="help-section-title" onClick={() => toggleSection(index)}>
@@ -79,7 +101,9 @@ const HelpPage = () => {
         </div>
       ))}
 
-      <footer className="help-footer">Thank you for choosing Pixel Pets to help you in your productivity journey!</footer>
+      <footer className="help-footer">
+        Thank you for using Pixel Pets! Keep completing tasks and growing your pet collection!
+      </footer>
     </div>
   );
 };
