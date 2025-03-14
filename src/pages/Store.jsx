@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getStoreItems, purchaseItem } from "../api/store";
 import { getUserPoints, deductPoints } from "../api/points";
 import ConfirmationModal from "../components/ConfirmationModal";
-import "../styles/globals.css"; // Import styles
+import "../styles/globals.css";
 
 const BASE_URL = process.env.STORE_API_URL || "http://localhost:8004";
 
@@ -10,9 +10,9 @@ const Store = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedItem, setSelectedItem] = useState(null); // Track selected item for modal
-  const [userPoints, setUserPoints] = useState(0); // Track user's points
-  const [errorMessage, setErrorMessage] = useState(""); // Track error message
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [userPoints, setUserPoints] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchItemsAndPoints = async () => {
@@ -62,7 +62,7 @@ const Store = () => {
         {items.map((item) => (
           <div key={item.id} className="item-card">
             <img
-              src={`${BASE_URL}${item.image}`} // ✅ Ensure images load from backend
+              src={`${BASE_URL}${item.image}`} // Ensure images load from backend
               alt={item.name}
               className="item-image"
             />

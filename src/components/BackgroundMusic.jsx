@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../styles/globals.css"; // Import global styles
+import "../styles/globals.css";
 
 const BackgroundMusic = ({ src }) => {
   const audioRef = useRef(null);

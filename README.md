@@ -1,75 +1,59 @@
-<<<<<<< HEAD
-# cs361-main-program
-Main program for CS 361 (software engineering 1) project.
-=======
-# Getting Started with Create React App
+# Pixel Pets - Gamify Your Productivity!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **Pixel Pets**, a **gamified study and task tracker** that helps you stay productive while earning rewards! Complete tasks, earn points, and unlock adorable pixel pets and decorations (coming soon).
 
-## Available Scripts
+![Pixel Pets Preview](public/assets/sleeping_dog.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+**Task Management** – Add, complete, and track tasks with difficulty-based point rewards  
+**Gamification** – Earn points and use them to unlock new pets, accessories, and decorations  
+**Inventory & Store** – Purchase and equip items to customize your virtual pets  
+**Daily Streak System** – Stay motivated with streak-based bonus rewards  
+**Beautiful Pixel Art UI** – A cozy, nostalgic pixel-style environment  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+| **Technology** | **Purpose** |
+|--------------|-------------|
+| **React.js** | Frontend UI & component rendering |
+| **FastAPI** | Backend API & microservices |
+| **SQLite / PostgreSQL** | Database for tasks, users, and inventory |
+| **JWT Authentication** | Secure user login & authentication |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Backend Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Pixel Pets Backend](https://github.com/yahna8/pixel-pets-backend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How It Works
 
-### `npm run eject`
+**Create a Task** – Set task difficulty and deadlines  
+**Complete Tasks** – Earn points based on task difficulty  
+**Buy & Equip Items** – Use points to unlock new pets, backgrounds, and accessories  
+**Track Progress** – View completed tasks and streak history  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation & Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **Clone the Repository**
+```sh
+git clone https://github.com/yourusername/pixel-pets.git
+cd pixel-pets
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **Install Node**
+```sh
+pip install node
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 6a93677 (adding node/react)
+### **Run React Server**
+```sh
+npm start
+```

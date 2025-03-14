@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8006"; // Your Node.js backend server
+const BASE_URL = "http://localhost:8006"; // Backend server
 
 // Function to send the user email to the backend
 export const sendUserEmail = async (email) => {

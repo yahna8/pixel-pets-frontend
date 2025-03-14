@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/globals.css"; // Import styles
+import "../styles/globals.css";
 
 const ConfirmationModal = ({ item, onConfirm, onCancel }) => {
   if (!item) return null; // Don't render if no item is selected

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext'; // Auth provider
-import useAuth from './hooks/useAuth';
+import useAuth from './hooks/useAuth'; 
 import Navbar from './components/Navbar'; // Navigation bar
 import Login from './pages/Login'; // Login page
 import Register from './pages/Register'; // Import Register component
@@ -103,9 +103,9 @@ const App = () => {
           <Route
             path="/help"
             element={
-              <PrivateRoute>
+              <PublicRoute>
                 <Help />
-              </PrivateRoute>
+              </PublicRoute>
             }
           />
         </Routes>

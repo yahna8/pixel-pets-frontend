@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getInventory } from "../api/inventory";
 import axios from "axios";
-import "../styles/globals.css"; // Import styles
+import "../styles/globals.css";
 
 const BASE_URL = process.env.STORE_API_URL || "http://localhost:8004";
 

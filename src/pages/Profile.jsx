@@ -21,7 +21,7 @@ const Profile = () => {
       try {
         const response = await axios.get(`${BASE_URL}/profile`, {
           headers: {
-            Authorization: `Bearer ${token}`, // ✅ Ensure correct format
+            Authorization: `Bearer ${token}`,
           },
         });
         setUser(response.data);
